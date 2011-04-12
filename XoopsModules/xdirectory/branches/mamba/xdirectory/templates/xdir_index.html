@@ -1,0 +1,87 @@
+<br />
+<table border="0" width="100%">
+	<tr>
+		<td align="left"><b>Business Directory</b></td>
+		<td align="right">Business Owners<br><a href="<{$xoops_url}>/modules/xdirectory/submit.php"><u>click here</u></a>
+		</td>
+	</tr>
+</table>
+<hr />
+<!-- <table border="1" bordercolor="#666666" bgcolor="#FFFFCC" width="100%">
+	<tr>
+		<td align="center">
+			<table border="0">
+					<form name='search' id='search' action='/search.php' method='post' onsubmit='return xoopsFormValidate_search();'>
+					<input type='hidden' name='mids[]' value='12' />
+				<tr>
+					<td><strong>Search for: </strong></td>
+					<td><input type='text' name='query' id='query' size='20' maxlength='255' value='' /></td>
+					<td><select  size='1' name='andor' id='andor'>
+					<option value='AND' selected='selected'>All Words</option>
+					<option value='OR'>Any Words</option>
+					<option value='exact'>Exact Match</option>
+					</select></td>
+					<td><input type='submit' class='formButton' name='submit'  id='submit' value='Search' /></td>
+				</tr>
+					<input type='hidden' name='action' id='action' value='results' />
+					</form>
+			</table>
+		</td>
+	</tr>
+</table> -->
+		<script type='text/javascript'>
+		<!--
+		function xoopsFormValidate_search(){}
+		//-->
+		</script>
+
+  <{if count($categories) gt 0}>
+
+<table border='0' cellspacing='5' cellpadding='0' align="center">
+  <tr>
+  <!-- Start category loop -->
+  <{foreach item=category from=$categories}>
+
+    <td valign="top">
+
+    <{if $category.image != ""}>
+    <a href="<{$xoops_url}>/modules/xdirectory/viewcat.php?cid=<{$category.id}>"><img src="<{$category.image}>" height="50" border="0" alt="" /></a>
+    <{/if}>
+
+    </td>
+    <td valign="top" width="33%"><a href="<{$xoops_url}>/modules/xdirectory/viewcat.php?cid=<{$category.id}>"><b><{$category.title}></b></a> (<{$category.totallink}>)<br /><{$category.subcategories}></td>
+
+    <{if $category.count is div by 3}>
+    </tr><tr>
+    <{/if}>
+
+  <{/foreach}>
+  <!-- End category loop -->
+
+  </tr>
+</table>
+
+<br /><br />
+
+<div><{$lang_thereare}></div>
+<hr /><br />
+<{/if}>
+<{if $links != ""}>
+<h4><{$lang_latestlistings}></h4>
+<table width="100%" cellspacing="0" cellpadding="10" border="0">
+<tr>
+<td width="100%" align="center" valign="top">
+
+  <!-- Start new link loop -->
+ <{section name=i loop=$category}>
+  <{$link.category link=$category[i]}>
+  <{section name=i loop=$links}>
+    <{include file="db:xdir_link.html" link=$links[i]}>
+  <{/section}>
+ <{/section}>
+  <!-- End new link loop -->
+
+</td></tr>
+</table>
+<{/if}>
+<{include file='db:system_notification_select.html'}>
