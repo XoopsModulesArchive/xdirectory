@@ -30,12 +30,34 @@
 //	the mylinks module as the foundation.									 //
 // ------------------------------------------------------------------------- //
 
-$adminmenu[1]['title'] = _MI_XDIR_ADMENU2;
-$adminmenu[1]['link'] = "admin/index.php?op=linksConfigMenu";
-$adminmenu[2]['title'] = _MI_XDIR_ADMENU3;
-$adminmenu[2]['link'] = "admin/index.php?op=listNewLinks";
-$adminmenu[3]['title'] = _MI_XDIR_ADMENU4;
-$adminmenu[3]['link'] = "admin/index.php?op=listBrokenLinks";
-$adminmenu[4]['title'] = _MI_XDIR_ADMENU5;
-$adminmenu[4]['link'] = "admin/index.php?op=listModReq";
+$i = 1;
+$adminmenu[$i]['title'] = _MI_XDIR_ADMIN_HOME ;
+$adminmenu[$i]['link']  = 'admin/index.php' ;
+$adminmenu[$i]['desc']  = _MI_XDIR_ADMIN_HOME_DESC ;
+$adminmenu[$i]['icon']  = 'images/admin/home.png' ;
+$i++;
+$adminmenu[$i]['title'] = _MI_XDIR_ADMENU2;
+$adminmenu[$i]['link'] = "admin/main.php?op=linksConfigMenu";
+$adminmenu[$i]['desc']  = _MI_XDIR_ADMENU2_DESC ;
+$adminmenu[$i]['icon']  = 'images/admin/addlink.png' ;
+$i++;
+$adminmenu[$i]['title'] = _MI_XDIR_ADMENU3;
+$adminmenu[$i]['link'] = "admin/main.php?op=listNewLinks";
+$adminmenu[$i]['desc']  = _MI_XDIR_ADMENU3_DESC ;
+$adminmenu[$i]['icon']  = 'images/admin/submittedlink.png' ;
+$i++;
+$adminmenu[$i]['title'] = _MI_XDIR_ADMENU4;
+$adminmenu[$i]['link'] = "admin/main.php?op=listBrokenLinks";
+$adminmenu[$i]['desc']  = _MI_XDIR_ADMENU4_DESC ;
+$adminmenu[$i]['icon']  = 'images/admin/brokenlink.png' ;
+$i++;
+$adminmenu[$i]['title'] = _MI_XDIR_ADMENU5;
+$adminmenu[$i]['link'] = "admin/main.php?op=listModReq";
+$adminmenu[$i]['desc']  = _MI_XDIR_ADMENU5_DESC ;
+$adminmenu[$i]['icon']  = 'images/admin/modifiedlink.png' ;
+$i++;
+$adminmenu[$i]['title'] = _MI_XDIR_ADMIN_ABOUT;
+$adminmenu[$i]['link']  = 'admin/about.php';
+$adminmenu[$i]['desc']  = _MI_XDIR_ADMIN_ABOUT_DESC;
+$adminmenu[$i]['icon']  = 'images/admin/about.png';
 ?>

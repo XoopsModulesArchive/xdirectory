@@ -93,4 +93,17 @@ define('_MI_XDIR_LINK_APPROVE_NOTIFY', 'Listing Approved');
 define('_MI_XDIR_LINK_APPROVE_NOTIFYCAP', 'Notify me when this listing is approved.');
 define('_MI_XDIR_LINK_APPROVE_NOTIFYDSC', 'Receive notification when this listing is approved.');
 define('_MI_XDIR_LINK_APPROVE_NOTIFYSBJ', '[{X_SITENAME}] {X_MODULE} auto-notify : Listing approved');
+
+//1.60
+
+define('_MI_XDIR_ADMIN_HOME',"Home"); 
+define("_MI_XDIR_ADMIN_HOME_DESC","Back to Home");
+
+define("_MI_XDIR_ADMIN_ABOUT" , "About");
+define("_MI_XDIR_ADMIN_ABOUT_DESC" , "About this module");
+define("_MI_XDIR_ADMENU2_DESC" , "Add/Edit Links");
+define("_MI_XDIR_ADMENU3_DESC" , "List New Links");
+define("_MI_XDIR_ADMENU4_DESC" , "List Broken Links");
+define("_MI_XDIR_ADMENU5_DESC" , "List Requested Modifications");
+
 ?>

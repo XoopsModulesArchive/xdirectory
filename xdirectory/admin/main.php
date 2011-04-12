@@ -29,11 +29,13 @@
 // ------------------------------------------------------------------------- //
 
 include '../../../include/cp_header.php';
+include_once XOOPS_ROOT_PATH."/modules/" . $xoopsModule->getVar("dirname") . "/class/admin.php" ;
 if ( file_exists("../language/".$xoopsConfig['language']."/main.php") ) {
 	include "../language/".$xoopsConfig['language']."/main.php";
 } else {
 	include "../language/english/main.php";
 }
+
 include '../include/functions.php';
 include_once XOOPS_ROOT_PATH.'/class/xoopstree.php';
 include_once XOOPS_ROOT_PATH."/class/xoopslists.php";
@@ -45,7 +47,7 @@ $mytree = new XoopsTree($xoopsDB->prefix("xdir_cat"),"cid","pid");
 
 function xdir()
 {
-    global $xoopsDB, $xoopsModule;
+    /*global $xoopsDB, $xoopsModule;
 	xoops_cp_header();
 	echo "<h4>"._MD_WEBLINKSCONF."</h4>";
 		echo"<table width='100%' border='0' cellspacing='1' class='outer'>"
@@ -68,30 +70,34 @@ function xdir()
 	}
 	echo " - <a href='".XOOPS_URL."/modules/system/admin.php?fct=preferences&op=showmod&mod=".$xoopsModule->getVar('mid')."'>"._MD_GENERALSET."</a>";
 	echo "<br /><br />";
-	echo " - <a href=index.php?op=linksConfigMenu>"._MD_ADDMODDELETE."</a>";
+	echo " - <a href=main.php?op=linksConfigMenu>"._MD_ADDMODDELETE."</a>";
 	echo "<br /><br />";
-	echo " - <a href=index.php?op=listNewLinks>"._MD_LINKSWAITING." ($totalnewlinks)</a>";
+	echo " - <a href=main.php?op=listNewLinks>"._MD_LINKSWAITING." ($totalnewlinks)</a>";
 	echo "<br /><br />";
-	echo " - <a href=index.php?op=listBrokenLinks>"._MD_BROKENREPORTS." ($totalbrokenlinks)</a>";
+	echo " - <a href=main.php?op=listBrokenLinks>"._MD_BROKENREPORTS." ($totalbrokenlinks)</a>";
 	echo "<br /><br />";
-	echo " - <a href=index.php?op=listModReq>"._MD_MODREQUESTS." ($totalmodrequests)</a>";
+	echo " - <a href=main.php?op=listModReq>"._MD_MODREQUESTS." ($totalmodrequests)</a>";
 	$result=$xoopsDB->query("select count(*) from ".$xoopsDB->prefix("xdir_links")." where status>0");
     list($numrows) = $xoopsDB->fetchRow($result);
 	echo "<br /><br /><div>";
 	printf(_MD_THEREARE,$numrows);	echo "</div>";
    	echo"</td></tr></table>";
-	xoops_cp_footer();
+	include "footer.php";
+	xoops_cp_footer();*/
 }
 
 function listNewLinks()
 {
-	global $xoopsDB, $xoopsConfig, $myts, $eh, $mytree;
+	global $xoopsDB, $xoopsConfig, $myts, $eh, $mytree, $xoopsModule;
 	// List links waiting for validation
 	$linkimg_array = XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH."/modules/xdirectory/images/shots/");
     $result = $xoopsDB->query("select lid, cid, title, address, address2, city, state, zip, country, phone, fax, email, url, logourl, submitter, premium from ".$xoopsDB->prefix("xdir_links")." where status=0 order by date DESC");
     $numrows = $xoopsDB->getRowsNum($result);
 	xoops_cp_header();
-	echo "<h4>"._MD_WEBLINKSCONF."</h4>";
+    $index_admin = new ModuleAdmin() ;
+    echo $index_admin->addNavigation('main.php?op=listNewLinks') ;
+	
+//	echo "<h4>"._MD_WEBLINKSCONF."</h4>";
         echo"<table width='100%' border='0' cellspacing='1' class='outer'>"
            ."<tr class=\"odd\"><td>";
     echo "<h4>"._MD_LINKSWAITING." ($numrows)</h4><br />";
@@ -116,7 +122,7 @@ function listNewLinks()
 			$description = $myts->makeTareaData4Edit($description);
 			$submitter = XoopsUser::getUnameFromId($submitterid);
 			$premium = $myts->makeTboxData4Edit($premium);
-			echo "<form action=\"index.php\" method=post>\n";
+			echo "<form action=\"main.php\" method=post>\n";
 			echo "<table width=\"80%\">";
 			echo "<tr><td align=\"right\" nowrap>"._MD_SUBMITTER."</td><td>\n";
 			echo "<a href=\"".XOOPS_URL."/userinfo.php?uid=".$submitterid."\">$submitter</a>";
@@ -179,26 +185,31 @@ function listNewLinks()
 			echo "<br /><input type=\"hidden\" name=\"op\" value=\"approve\"></input>";
 			echo "<input type=\"hidden\" name=\"lid\" value=\"$lid\"></input>";
 			echo "<input type=\"submit\" value=\""._MD_APPROVE."\"></form>\n";
-			echo myTextForm("index.php?op=delNewLink&lid=$lid",_MD_DELETE);
+			echo myTextForm("main.php?op=delNewLink&lid=$lid",_MD_DELETE);
 			echo "<br /><br />";
 		}
 	} else {
 		echo ""._MD_NOSUBMITTED."";
 	}
 	echo"</td></tr></table>";
+	include "footer.php";
 	xoops_cp_footer();
 }
 
 function linksConfigMenu()
 {
-	global $xoopsDB,$xoopsConfig, $myts, $eh, $mytree;
+	global $xoopsDB,$xoopsConfig, $myts, $eh, $mytree, $xoopsModule;
 	// Add a New Main Category
 	xoops_cp_header();
+	$index_admin = new ModuleAdmin() ;
+    echo $index_admin->addNavigation('main.php?op=linksConfigMenu') ;
+
+
 	$linkimg_array = XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH."/modules/xdirectory/images/shots/");
-	echo "<h4>"._MD_WEBLINKSCONF."</h4>";
+//	echo "<h4>"._MD_WEBLINKSCONF."</h4>";
 	echo "<table width='100%' border='0' cellspacing='1' class='outer'>"
 	."<tr class=\"odd\"><td>";
-   	echo "<form method=post action=index.php>\n";
+   	echo "<form method=post action=main.php>\n";
     	echo "<h4>"._MD_ADDMAIN."</h4><br />"._MD_TITLEC."<input type=text name=title size=30 maxlength=50><br />";
 	echo ""._MD_IMGURL."<br /><input type=\"text\" name=\"imgurl\" size=\"100\" maxlength=\"150\" value=\"http://\"><br /><br />";
 	echo "<input type=hidden name=cid value=0>\n";
@@ -212,7 +223,7 @@ function linksConfigMenu()
     if ( $numrows > 0 ) {
 	echo"<table width='100%' border='0' cellspacing='1' class='outer'>"
 	."<tr class=\"odd\"><td>";
-    	echo "<form method=post action=index.php>";
+    	echo "<form method=post action=main.php>";
     	echo "<h4>"._MD_ADDSUB."</h4><br />"._MD_TITLEC."<input type=text name=title size=30 maxlength=50> "._MD_IN." ";
 		$mytree->makeMySelBox("title", "title");
 		#		echo "<br />"._MD_IMGURL."<br /><input type=\"text\" name=\"imgurl\" size=\"100\" maxlength=\"150\">\n";
@@ -224,7 +235,7 @@ function linksConfigMenu()
 
 	echo"<table width='100%' border='0' cellspacing='1' class='outer'>"
 	."<tr class=\"odd\"><td>";
-    	echo "<form method=post action=index.php>\n";
+    	echo "<form method=post action=main.php>\n";
     	echo "<h4>"._MD_ADDNEWLINK."</h4><br />\n";
     	echo "<table width=\"80%\"><tr>\n";
 		echo "<td align=\"right\">"._MD_SITETITLE."</td><td>";
@@ -301,7 +312,7 @@ function linksConfigMenu()
 	echo"<table width='100%' border='0' cellspacing='1' class='outer'>"
 	."<tr class=\"odd\"><td>";
     	echo "
-    	</center><form method=post action=index.php>
+    	</center><form method=post action=main.php>
     	<h4>"._MD_MODCAT."</h4><br />";
     	echo _MD_CATEGORYC;
     	$mytree->makeMySelBox("title", "title");
@@ -318,7 +329,7 @@ function linksConfigMenu()
     if ( $numrows2 > 0 ) {
 	echo"<table width='100%' border='0' cellspacing='1' class='outer'>"
 	."<tr class=\"odd\"><td>";
-    	echo "<form method=get action=\"index.php\">\n";
+    	echo "<form method=get action=\"main.php\">\n";
     	echo "<h4>"._MD_MODLINK."</h4><br />\n";
     	echo _MD_LINKID."<input type=text name=lid size=12 maxlength=11>\n";
 		echo "<input type=hidden name=fct value=xdir>\n";
@@ -326,16 +337,21 @@ function linksConfigMenu()
 		echo "<input type=submit value="._MD_MODIFY."></form>\n";
 		echo"</td></tr></table>";
    	}
+	include "footer.php";
 	xoops_cp_footer();
 }
 
 function modLink()
 {
-   	global $xoopsDB, $_GET, $myts, $eh, $mytree, $xoopsConfig;
+   	global $xoopsDB, $_GET, $myts, $eh, $mytree, $xoopsConfig, $xoopsModule;
    	$linkimg_array = XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH."/modules/xdirectory/images/shots/");
    	$lid = $_GET['lid'];
 	xoops_cp_header();
-	echo "<h4>"._MD_WEBLINKSCONF."</h4>";
+    $index_admin = new ModuleAdmin() ;
+    echo $index_admin->addNavigation('main.php?op=linksConfigMenu') ;
+
+	
+//	echo "<h4>"._MD_WEBLINKSCONF."</h4>";
 	echo"<table width='100%' border='0' cellspacing='1' class='outer'>"
 	."<tr class=\"odd\"><td>";
    	$result = $xoopsDB->query("select cid, title, address, address2, city, state, zip, country, phone, fax, email, url, logourl, premium from ".$xoopsDB->prefix("xdir_links")." where lid=$lid") or $eh->show("0013");
@@ -360,7 +376,7 @@ function modLink()
     list($description)=$xoopsDB->fetchRow($result2);
     $GLOBALS['description'] = $myts->makeTareaData4Edit($description);
 	echo "<table>";
-    echo "<form method=post action=index.php>";
+    echo "<form method=post action=main.php>";
     echo "<tr><td>"._MD_LINKID."</td><td><b>$lid</b></td></tr>";
     echo "<tr><td>"._MD_SITETITLE."</td><td><input type=text name=title value=\"$title\" size=50 maxlength=100></input></td></tr>\n";
 	echo "<tr><td>"._MD_BUSADDRESS."</td><td><input type=text name=address value=\"$address\" size=50 maxlength=100></td></tr>\n";
@@ -425,14 +441,14 @@ function modLink()
 	echo "</table>";
     echo "<br /><br /><input type=hidden name=lid value=$lid></input>\n";
     echo "<input type=hidden name=op value=modLinkS><input type=submit value="._MD_MODIFY.">";
-	// echo " <input type=button value="._MD_DELETE." onclick=\"javascript:location='index.php?op=delLink&lid=".$lid."'\">";
+	// echo " <input type=button value="._MD_DELETE." onclick=\"javascript:location='main.php?op=delLink&lid=".$lid."'\">";
 	//echo " <input type=button value="._MD_CANCEL." onclick=\"javascript:history.go(-1)\">";
 	echo "</form>\n";
 
 	echo "<table><tr><td>\n";
-	echo myTextForm("index.php?op=delLink&lid=".$lid , _MD_DELETE);
+	echo myTextForm("main.php?op=delLink&lid=".$lid , _MD_DELETE);
 	echo "</td><td>\n";
-	echo myTextForm("index.php?op=linksConfigMenu", _MD_CANCEL);
+	echo myTextForm("main.php?op=linksConfigMenu", _MD_CANCEL);
 	echo "</td></tr></table>\n";
     echo "<hr>";
 
@@ -466,7 +482,7 @@ function modLink()
         $useravgrating = $useravgrating / $uservotes;
         $useravgrating = number_format($useravgrating, 1);
 		$ratingusername = XoopsUser::getUnameFromId($ratinguser);
-        echo "<tr><td bgcolor=\"".$colorswitch."\">".$ratingusername."</td><td bgcolor=\"$colorswitch\">".$ratinghostname."</td><td bgcolor=\"$colorswitch\">$rating</td><td bgcolor=\"$colorswitch\">".$useravgrating."</td><td bgcolor=\"$colorswitch\">".$uservotes."</td><td bgcolor=\"$colorswitch\">".$ratingtimestamp."</td><td bgcolor=\"$colorswitch\" align=\"center\"><b>".myTextForm("index.php?op=delVote&lid=$lid&rid=$ratingid", "X")."</b></td></tr>\n";
+        echo "<tr><td bgcolor=\"".$colorswitch."\">".$ratingusername."</td><td bgcolor=\"$colorswitch\">".$ratinghostname."</td><td bgcolor=\"$colorswitch\">$rating</td><td bgcolor=\"$colorswitch\">".$useravgrating."</td><td bgcolor=\"$colorswitch\">".$uservotes."</td><td bgcolor=\"$colorswitch\">".$ratingtimestamp."</td><td bgcolor=\"$colorswitch\" align=\"center\"><b>".myTextForm("main.php?op=delVote&lid=$lid&rid=$ratingid", "X")."</b></td></tr>\n";
     	$x++;
     	if ( $colorswitch == "dddddd" ) {
 			$colorswitch="ffffff";
@@ -488,7 +504,7 @@ function modLink()
     $colorswitch="dddddd";
     while ( list($ratingid, $rating, $ratinghostname, $ratingtimestamp)=$xoopsDB->fetchRow($result5) ) {
 		$formatted_date = formatTimestamp($ratingtimestamp);
-        echo "<td colspan=\"2\" bgcolor=\"$colorswitch\">$ratinghostname</td><td colspan=\"3\" bgcolor=\"$colorswitch\">$rating</td><td bgcolor=\"$colorswitch\">$formatted_date</td><td bgcolor=\"$colorswitch\" aling=\"center\"><b>".myTextForm("index.php?op=delVote&lid=$lid&rid=$ratingid", "X")."</b></td></tr>";
+        echo "<td colspan=\"2\" bgcolor=\"$colorswitch\">$ratinghostname</td><td colspan=\"3\" bgcolor=\"$colorswitch\">$rating</td><td bgcolor=\"$colorswitch\">$formatted_date</td><td bgcolor=\"$colorswitch\" aling=\"center\"><b>".myTextForm("main.php?op=delVote&lid=$lid&rid=$ratingid", "X")."</b></td></tr>";
     	$x++;
     	if ( $colorswitch == "dddddd" ) {
 			$colorswitch="ffffff";
@@ -499,6 +515,7 @@ function modLink()
     echo "<tr><td colspan=\"6\"> <br /></td></tr>\n";
     echo "</table>\n";
     echo"</td></tr></table>";
+	include "footer.php";	
     xoops_cp_footer();
 }
 
@@ -516,11 +533,14 @@ function delVote()
 
 function listBrokenLinks()
 {
-   	global $xoopsDB, $eh;
+   	global $xoopsDB, $eh, $xoopsModule;
    	$result = $xoopsDB->query("select * from ".$xoopsDB->prefix("xdir_broken")." group by lid order by reportid DESC");
    	$totalbrokenlinks = $xoopsDB->getRowsNum($result);
 	xoops_cp_header();
-	echo "<h4>"._MD_WEBLINKSCONF."</h4>";
+    $index_admin = new ModuleAdmin() ;
+    echo $index_admin->addNavigation('main.php?op=listBrokenLinks') ;
+
+//	echo "<h4>"._MD_WEBLINKSCONF."</h4>";
 	echo"<table width='100%' border='0' cellspacing='1' class='outer'>"
 	."<tr class=\"odd\"><td>";
 	echo "<h4>"._MD_BROKENREPORTS." ($totalbrokenlinks)</h4><br />";
@@ -566,11 +586,11 @@ function listBrokenLinks()
 			}
 
 			echo "</td><td bgcolor='$colorswitch' align='center'>\n";
-			echo myTextForm("index.php?op=ignoreBrokenLinks&lid=$lid" , "X");
+			echo myTextForm("main.php?op=ignoreBrokenLinks&lid=$lid" , "X");
 			echo "</td><td bgcolor='$colorswitch' align='center'>\n";
-			echo myTextForm("index.php?op=modLink&lid=$lid" , "X");
+			echo myTextForm("main.php?op=modLink&lid=$lid" , "X");
 			echo "</td><td align='center' bgcolor='$colorswitch'>\n";
-			echo myTextForm("index.php?op=delBrokenLinks&lid=$lid" , "X");
+			echo myTextForm("main.php?op=delBrokenLinks&lid=$lid" , "X");
 			echo "</td></tr>\n";
 
     		if ( $colorswitch == "#dddddd" ) {
@@ -583,6 +603,7 @@ function listBrokenLinks()
     }
 
 	echo"</td></tr></table>";
+	include "footer.php";	
 	xoops_cp_footer();
 }
 
@@ -610,11 +631,14 @@ function ignoreBrokenLinks()
 
 function listModReq()
 {
-	global $xoopsDB, $myts, $eh, $mytree, $xoopsModuleConfig;
+	global $xoopsDB, $myts, $eh, $mytree, $xoopsModuleConfig, $xoopsModule;
     $result = $xoopsDB->query("select * from ".$xoopsDB->prefix("xdir_mod")." order by requestid");
     $totalmodrequests = $xoopsDB->getRowsNum($result);
 	xoops_cp_header();
-	echo "<h4>"._MD_WEBLINKSCONF."</h4>";
+    $index_admin = new ModuleAdmin() ;
+    echo $index_admin->addNavigation('main.php?op=listModReq') ;
+	
+//	echo "<h4>"._MD_WEBLINKSCONF."</h4>";
 	echo"<table width='100%' border='0' cellspacing='1' class='outer'>"
 	."<tr class=\"odd\"><td>";
     echo "<h4>"._MD_USERMODREQ." ($totalmodrequests)</h4><br />";
@@ -722,11 +746,11 @@ function listModReq()
 			}
 			echo "<td align=right><small>\n";
 			echo "<table><tr><td>\n";
-			echo myTextForm("index.php?op=changeModReq&requestid=$requestid" , _MD_APPROVE);
+			echo myTextForm("main.php?op=changeModReq&requestid=$requestid" , _MD_APPROVE);
 			echo "</td><td>\n";
-			echo myTextForm("index.php?op=modLink&lid=$lookup_lid[$requestid]", _EDIT);
+			echo myTextForm("main.php?op=modLink&lid=$lookup_lid[$requestid]", _EDIT);
 			echo "</td><td>\n";
-			echo myTextForm("index.php?op=ignoreModReq&requestid=$requestid", _MD_IGNORE);
+			echo myTextForm("main.php?op=ignoreModReq&requestid=$requestid", _MD_IGNORE);
 			echo "</td></tr></table>\n";
 			echo "</small></td></tr>\n";
     		echo "</table><br /><br />";
@@ -736,6 +760,7 @@ function listModReq()
 		echo _MD_NOMODREQ;
 	}
 	echo"</td></tr></table>";
+	include "footer.php";	
 	xoops_cp_footer();
 }
 
@@ -842,7 +867,7 @@ function delLink()
 
 function modCat()
 {
-	global $xoopsDB, $_POST, $myts, $eh, $mytree;
+	global $xoopsDB, $_POST, $myts, $eh, $mytree, $xoopsModule;
     $cid = $_POST["cid"];
 	xoops_cp_header();
 	echo "<h4>"._MD_WEBLINKSCONF."</h4>";
@@ -853,17 +878,18 @@ function modCat()
 	list($pid,$title,$imgurl) = $xoopsDB->fetchRow($result);
 	$title = $myts->makeTboxData4Edit($title);
 	$imgurl = $myts->makeTboxData4Edit($imgurl);
-	echo "<form action=index.php method=post>"._MD_TITLEC."<input type=text name=title value=\"$title\" size=51 maxlength=50><br /><br />"._MD_IMGURLMAIN."<br /><input type=text name=imgurl value=\"$imgurl\" size=100 maxlength=150><br /><br />";
+	echo "<form action=main.php method=post>"._MD_TITLEC."<input type=text name=title value=\"$title\" size=51 maxlength=50><br /><br />"._MD_IMGURLMAIN."<br /><input type=text name=imgurl value=\"$imgurl\" size=100 maxlength=150><br /><br />";
 	echo _MD_PARENT." ";
 	$mytree->makeMySelBox("title", "title", $pid, 1, "pid");
 	//	<input type=hidden name=pid value=\"$pid\">
 	echo "<br /><input type=\"hidden\" name=\"cid\" value=\"".$cid."\">
 	<input type=\"hidden\" name=\"op\" value=\"modCatS\"><br />
 	<input type=\"submit\" value=\""._MD_SAVE."\">
-	<input type=\"button\" value=\""._MD_DELETE."\" onClick=\"location='index.php?pid=$pid&cid=$cid&op=delCat'\">";
+	<input type=\"button\" value=\""._MD_DELETE."\" onClick=\"location='main.php?pid=$pid&cid=$cid&op=delCat'\">";
 	echo " <input type=\"button\" value=\""._MD_CANCEL."\" onclick=\"javascript:history.go(-1)\ /\">";
 	echo "</form>";
 	echo"</td></tr></table>";
+	include "footer.php";	
 	xoops_cp_footer();
 }
 
@@ -933,7 +959,8 @@ function delCat()
 		exit();
     } else {
 		xoops_cp_header();
-		xoops_confirm(array('op' => 'delCat', 'cid' => $cid, 'ok' => 1), 'index.php', _MD_WARNING);
+		xoops_confirm(array('op' => 'delCat', 'cid' => $cid, 'ok' => 1), 'main.php', _MD_WARNING);
+	    include "footer.php";		
 		xoops_cp_footer();
     }
 }
@@ -1055,7 +1082,7 @@ function addLink()
 	$notification_handler =& xoops_gethandler('notification');
 	$notification_handler->triggerEvent('global', 0, 'new_link', $tags);
 	$notification_handler->triggerEvent('category', $cid, 'new_link', $tags);
-    redirect_header("index.php?op=linksConfigMenu",1,_MD_NEWLINKADDED);
+    redirect_header("main.php?op=linksConfigMenu",1,_MD_NEWLINKADDED);
 }
 
 function approve()
