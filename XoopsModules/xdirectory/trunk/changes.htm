@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<title>Online Help File for the xDirectory Module for XOOPS</title>
+	</head>
+	<body>
+		<h1>Online Help File for the xDirectory Module for XOOPS</h1>
+		<p>
+			Please see the help.html file in your language directory.
+			<!-- 2Do: Can we automate this to show the actual link ? -->
+			
+		<h2>NEW Features Added</h2>
+		<p>
+			
+		</p>
+		<ul>
+			<li>
+				<b>Premium Services:</b> Premium services can now be edited in the admin console. Premium Services include:
+			</li>
+			<ul>
+			<li>
+				<u>Sponsor a Category:</u> a section at the top of
+				every category page (visible only if there is a
+				sponsor) where businesses can pay to have their
+				listing appear at the top of their page and
+				include their logo, url, etc.
+			</li>
+			<li>
+				<u>Highlight Your Listing:</u> a business can highlight
+				their existing listing (perhaps for a small
+				monthly/yearly fee). 
+			</li>
+			<li>
+				<u>Highlight Your Listing With WebLink:</u> a business can highlight
+				their existing listing and include a link to their website
+				(perhaps for a small monthly/yearly fee). 
+			</li>
+			
+			<li>
+				<u>WebLink Service:</u> make the option available to
+				pay a monthly fee to have a link to their website.
+			</li>
+			</ul>
+			<li><b>Email Form:</b> Added an e-mail form instead of displaying the e-mail address</li>
+			<li><b>Dutch Language Files:</b> xDirectory now supports Dutch language(Pallieter Koopmans)</li>
+			<li><b>xDirectory only search:</b> This function will require you to change the value in the hidden field: 
+			input type='hidden' name='mids[]' value='12' / <br>the current value is 12 you will need to change it to reflect the 
+			correct number for your installation of xDirectory. You can find it by going to the "advanced search" page and viewing the code. Look for the "xDirectory"(or whatever you've named it) module checkbox and it will have the value you need.</li>
+			</ul>
+			
+		</p>
+		<h2>To Do List</h2>
+		<p>
+			To allow this module to grow to its full potential,
+			a few features are still needed. 
+		</p>
+		<ul>
+			<li>
+				The code contains some "// 2Do: " sections;
+				they should be looked at and properly dealt
+				with (eg: complete/answer/fix/remove it).
+			</li>
+			<li>
+				Separating the language and culture dependant
+				aspects from the code. For example: the address
+				format differs greatly in countries. 
+			</li>
+			<li>
+				Better CSS compliance (always use the users theme).
+			</li>
+			<li>
+				Faster and better looking (structured and
+				formatted) code - with sufficient in-line
+				documentation (using PHPDocumentor style comments).
+			</li>
+			<ul>
+				<li>Change double quotes for single quotes (where appropriate).</li>
+				<li>Rewrite the code so the directory name from the module does not have to be xdirectory (but can be renamed by the user).</li>
+				<li>Add a noframe tag where a frameset is used.</li>
+			</ul>
+			<li>
+				Completing the help.html files in more languages.
+			</li>
+			<li>
+				Give the "submitter" the ability to modify their
+				own listing without admin intervention.
+			</li>
+
+			<li>
+				Translation: more languages. You can send your
+				suggestions to Adam Frick or Pallieter Koopmans.
+			</li>
+		</ul>
+		<h2>Future Features</h2>
+		<ul>
+			<li>
+				An e-commerce solution where users can submit
+				their listings and pay for any upgrades to their
+				basic listing online through an e-commerce
+				portal. And have it all done automatically
+				(without the involvement of the administrator).
+				This is a nice feature to add once the entire
+				module is bug free and the features above have
+				been implemented.
+			</li>
+			<li>
+				Make sponsored section disappear if there are no sponsors. Or add text "Sponsor your Category click here" when there are no sponsors.
+			</li>
+		</ul>
+		<h2>Changes</h2>
+		<ul>
+			<li>Version 1.0 was created by Adam Frick, based on the MyLinks module from Kazumi Ono.</li>
+			<li>Version 1.10 was first released as a XOOPS module by Adam Frick in 2003.</li>
+			<li>Version 1.20</li>
+			<ul>
+				<li>Cleaned up the code (Pallieter Koopmans)</li>
+				<li>Translation into Dutch (Pallieter Koopmans)</li>
+				<li>MySQL installation bugs fixed (Pallieter Koopmans)</li>
+				<li>Added initial documentation to the module (Pallieter Koopmans)</li>
+			</ul>
+			<li>Version 1.50 Was released in Jan 2004 by Adam Frick</li>
+			<ul>
+				<li>Added new fields in the following tables: xdir_links, xdir_mod</li>
+				<li>added new funtionality in the admin console for Premium Services</li>
+				<li>Modified layout of template files</li>
+				<li>Added e-mail form</li>
+			</ul>
+		</ul>
+		
+		<h2>Known Issues</h2>
+		<ul>
+			<li>Sponsored Section at the top of the category pages: Yellow lines appear below the box. This is a formatting issue. we're working on fixing this.</li>
+			<li>When a user modifies his/her link and you go to approve it in the admin console...changes don't take. changeModReq in /admin/index.php is not posting data to xdir_links table. Still working on this 1/10/2004. </li>
+		</ul>
+	</body>
+</html>
