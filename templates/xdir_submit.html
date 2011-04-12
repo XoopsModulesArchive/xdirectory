@@ -1,0 +1,156 @@
+<br />
+
+<table border="0" width="100%">
+	<tr>
+		<td align="left">Business Directory</td>
+		<td align="right">
+		</td>
+	</tr>
+</table>
+<hr />
+<table width="100%" cellspacing="1" cellpadding="4" border="0">
+  <tr>
+    <td>
+	<ul>
+	    <li><{$lang_submitonce}></li>
+		<li><{$lang_allpending}></li>
+		<!-- <li><{$lang_dontabuse}></li> -->
+		<li><{$lang_wetakeshot}></li>
+		</ul>
+    <form action="submit.php" method="post">
+        <table width="80%">
+          <tr> 
+            <td align="right" nowrap colspan="2" class="itemHead"> 
+              <div align="left"><b><{$lang_submitlinkh}></b></div>
+            </td>
+          </tr>
+          <tr> 
+            <td class="head" align="right" nowrap> 
+              <div align="left">
+                <b><{$lang_sitetitle}></b>
+              </div>
+            </td>
+            <td class="even"> 
+              <input type="text" name="title" size="50" maxlength="100" />
+            </td>
+          </tr>
+          <tr> 
+            <td class="head" align="right" nowrap> 
+              <div align="left">
+                <b><{$lang_busaddress}></b>
+              </div>
+            </td>
+            <td class="odd"> 
+              <input type="text" name="address" size="50" maxlength="100" />
+            </td>
+          </tr>
+          <tr> 
+            <td class="head" align="right" nowrap> 
+              <div align="left">
+                <b><{$lang_busaddress2}></b>
+              </div>
+            </td>
+            <td class="odd"> 
+              <input type="text" name="address2" size="50" maxlength="100" />
+            </td>
+          </tr>		  
+          <tr> 
+            <td class="head" align="right" nowrap> 
+              <div align="left">
+                <b><{$lang_buscity}></b>
+              </div>
+            </td>
+            <td class="even"> 
+              <input type="text" name="city" value="" size="20" maxlength="100" />  <input type="text" name="state" value="" size="4" maxlength="10" />  <input type="text" name="zip" value="" size="10" maxlength="30" />
+            </td>
+          </tr>
+          <tr> 
+            <td class="head" align="right" nowrap> 
+              <div align="left">
+                <b><{$lang_buscountry}></b>
+              </div>
+            </td>
+            <td class="odd"> 
+              <input type="text" name="country" size="50" maxlength="100" />
+            </td>
+          </tr>		  
+          <tr> 
+            <td class="head" align="right" nowrap> 
+              <div align="left">
+                <b><{$lang_busphone}></b>
+              </div>
+            </td>
+            <td class="odd"> 
+              <input type="text" name="phone" value="(916) " size="20" maxlength="100" />
+            </td>
+          </tr>
+          <tr> 
+            <td class="head" align="right" nowrap> 
+              <div align="left">
+                <b><{$lang_busfax}></b>
+              </div>
+            </td>
+            <td class="odd"> 
+              <input type="text" name="fax" size="50" maxlength="100" />
+            </td>
+          </tr>
+          <tr> 
+            <td class="head" align="right" nowrap> 
+              <div align="left">
+                <b><{$lang_busemail}></b>
+              </div>
+            </td>
+            <td class="odd"> 
+              <input type="text" name="email" size="50" maxlength="100" />
+            </td>
+          </tr>		  		  
+          <tr> 
+            <td class="head" align="right" nowrap> 
+              <div align="left"><b><{$lang_siteurl}></b></div>
+            </td>
+            <td class="even"> 
+              <input type="text" name="url" size="50" maxlength="255" value="http://" />
+            </td>
+          </tr>
+          <tr> 
+            <td class="head" align="right" nowrap> 
+              <div align="left"><b><{$lang_category}></b></div>
+            </td>
+            <td class="odd">
+				<{$category_selbox}></td>
+          </tr>
+          <tr> 
+            <td class="head" align="right" valign="top"> 
+              <div align="left"><b><{$lang_description}></b><br><{$lang_descripthelp}></div>
+            </td>
+            <td class="even" >
+			<{$xoops_codes}><{$xoops_smilies}></td>
+          </tr>
+          <tr>
+            <td class="head" align="right" valign="top">
+              <div align="left"><b><{$lang_options}></b></div>
+            </td>
+              <td class="odd" >
+			  <strong>Premium Services: </strong><br>
+<select name="premium">
+<option value="0">None</option>
+<option value="1">1 WebLink</option>
+<option value="2">2 Highlight</option>
+<option value="3">3 Highlight Plus WebLink</option>
+<option value="4">4 Page Sponsor</option>
+<option value="5">5 Page Sponsor Plus WebLink</option>
+</select>
+			 
+<!-- 			  <{if $notify_show}>
+                <input type="checkbox" name="notify" value="1"><{$lang_notify}></input>
+              <{/if}> -->
+              </td>
+          </tr>
+        </table>
+      <br />
+      <div style="text-align: center;"><input type="submit" name="submit" class="button" value="<{$lang_submit}>" /> <input type="button" value="<{$lang_cancel}>" onclick="javascript:history.go(-1)" /></div>
+    </form>
+  </td>
+</tr>
+</table>
+

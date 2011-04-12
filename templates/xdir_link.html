@@ -1,0 +1,70 @@
+<{if $link.premium =="2"}>	
+<table width='100%' bgcolor="#FFFFCC" cellpadding="10" cellspacing='1'>
+<{elseif $link.premium =="3"}>	
+<table width='100%' bgcolor="#FFFFCC" cellpadding="10" cellspacing='1'>
+<{else}>
+<table width='100%' cellspacing='1'>
+<{/if}>
+  <tr>
+  <{if $link.logourl != ""}>
+  <{if $link.premium != "0"}>
+    <td width='100' valign='top' align='left'><a href="<{$xoops_url}>/modules/xdirectory/singlelink.php?cid=<{$link.cid}>&lid=<{$link.id}>"><img src="images/shots/<{$link.logourl}>" border='0' alt=" "></a></td>
+    <td width='8'><img src="/images/spacer.gif" width="8"></td>
+	<td width='60%' align='left' valign="bottom">
+  <{/if}>
+  <{else}>
+    <td width='70%' align='left' valign="bottom">
+  <{/if}>
+	<{$link.adminlink}><a href="<{$xoops_url}>/modules/xdirectory/singlelink.php?cid=<{$link.cid}>&lid=<{$link.id}>"><b><{$link.title}></b></a> <!-- (<{$lang_category}> <{$link.category}>) --><br>
+	<{$link.address}><br />
+<{if $link.address2 != ""}>	
+   <{$link.address2}><br />
+<{/if}>	
+	<{$link.city}>, <{$link.state}> <{$link.zip}><br />
+	<strong><{$lang_phone}></strong><{$link.phone}><br />
+<{if $link.fax != ""}>
+	<strong><{$lang_fax}></strong><{$link.fax}><br />
+<{/if}>
+<{if $link.url != ""}>
+<{if $link.premium =="1"}>	
+   <a href='visit.php?cid=<{$link.cid}>&lid=<{$link.id}>' target='_blank'><img src='images/link.gif' border='0' alt='<{$lang_visit}>'><{$link.url}></a><br>
+<{elseif $link.premium =="3"}>	
+   <a href='visit.php?cid=<{$link.cid}>&lid=<{$link.id}>' target='_blank'><img src='images/link.gif' border='0' alt='<{$lang_visit}>'><{$link.url}></a><br>
+<{/if}>
+<{/if}>
+	</td>
+    <td align='right' width='30%'><a href="<{$xoops_url}>/modules/xdirectory/ratelink.php?cid=<{$link.cid}>&lid=<{$link.id}>"><b><{$lang_rating}></b><{$link.rating}> (<{$link.votes}>)</a>
+<br />
+<table border=0>
+<tr>
+<{if $link.email != ""}>
+<td>
+<form name=email action='<{$xoops_url}>/modules/xdirectory/contact.php' method=get>
+<input type='hidden' name='lid' value='<{$link.id}>'>
+<input type=submit value='Email'>
+</form>	
+</td>
+<{/if}>
+<td>
+<form name=mapForm2 action="http://us.rd.yahoo.com/maps/home/submit_a/*-http://maps.yahoo.com/maps" target="_new" method=get>
+<input type="hidden" name="addr" value="<{$link.address}>">
+<input type="hidden" name="csz" value="<{$link.city}>, <{$link.state}> <{$link.zip}>">
+<input type="hidden" name="country" value="us">
+<input type=hidden name=srchtype value=a>
+<input type=submit name="getmap" value="Map">
+</form>	
+</td>
+</tr>
+</table>
+
+	</td>
+  </tr>
+ </table>
+ <table border="0" width="100%">
+  <tr>
+    <td colspan="2"><a href="<{$xoops_url}>/modules/xdirectory/singlelink.php?cid=<{$link.cid}>&lid=<{$link.id}>">More Info</a> | <a href="<{$xoops_url}>/modules/xdirectory/ratelink.php?cid=<{$link.cid}>&lid=<{$link.id}>"><{$lang_ratethissite}></a> | <a href="<{$xoops_url}>/modules/xdirectory/modlink.php?lid=<{$link.id}>"><{$lang_modify}></a> | <a target="_top" href="mailto:?subject=<{$link.mail_subject}>&body=<{$link.mail_body}>"><{$lang_tellafriend}></a> | <a href="<{$xoops_url}>/modules/xdirectory/singlelink.php?cid=<{$link.cid}>&lid=<{$link.id}>"><{$lang_comments}> (<{$link.comments}>)</a>
+<br />
+</td>
+  </tr>
+</table>
+<hr />
