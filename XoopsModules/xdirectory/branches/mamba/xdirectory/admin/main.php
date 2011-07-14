@@ -29,14 +29,14 @@
 // ------------------------------------------------------------------------- //
 
 include '../../../include/cp_header.php';
-include_once XOOPS_ROOT_PATH."/modules/" . $xoopsModule->getVar("dirname") . "/class/admin.php" ;
+
 if ( file_exists("../language/".$xoopsConfig['language']."/main.php") ) {
 	include "../language/".$xoopsConfig['language']."/main.php";
 } else {
 	include "../language/english/main.php";
 }
-
 include '../include/functions.php';
+include_once 'admin_header.php';
 include_once XOOPS_ROOT_PATH.'/class/xoopstree.php';
 include_once XOOPS_ROOT_PATH."/class/xoopslists.php";
 include_once XOOPS_ROOT_PATH."/include/xoopscodes.php";
@@ -44,6 +44,7 @@ include_once XOOPS_ROOT_PATH.'/class/module.errorhandler.php';
 $myts =& MyTextSanitizer::getInstance();
 $eh = new ErrorHandler;
 $mytree = new XoopsTree($xoopsDB->prefix("xdir_cat"),"cid","pid");
+
 
 function xdir()
 {
@@ -82,13 +83,13 @@ function xdir()
 	echo "<br /><br /><div>";
 	printf(_MD_THEREARE,$numrows);	echo "</div>";
    	echo"</td></tr></table>";
-	include "footer.php";
+	include "admin_footer.php";
 	xoops_cp_footer();*/
 }
 
 function listNewLinks()
 {
-	global $xoopsDB, $xoopsConfig, $myts, $eh, $mytree, $xoopsModule;
+	global $xoopsDB, $xoopsConfig, $myts, $eh, $mytree, $xoopsModule, $moduleInfo;
 	// List links waiting for validation
 	$linkimg_array = XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH."/modules/xdirectory/images/shots/");
     $result = $xoopsDB->query("select lid, cid, title, address, address2, city, state, zip, country, phone, fax, email, url, logourl, submitter, premium from ".$xoopsDB->prefix("xdir_links")." where status=0 order by date DESC");
@@ -192,14 +193,15 @@ function listNewLinks()
 		echo ""._MD_NOSUBMITTED."";
 	}
 	echo"</td></tr></table>";
-	include "footer.php";
-	xoops_cp_footer();
+	include "admin_footer.php";
+//xoops_cp_footer();
 }
 
 function linksConfigMenu()
 {
-	global $xoopsDB,$xoopsConfig, $myts, $eh, $mytree, $xoopsModule;
+	global $xoopsDB,$xoopsConfig, $myts, $eh, $mytree, $xoopsModule, $moduleInfo;
 	// Add a New Main Category
+//	include_once "admin_header.php";	
 	xoops_cp_header();
 	$index_admin = new ModuleAdmin() ;
     echo $index_admin->addNavigation('main.php?op=linksConfigMenu') ;
@@ -337,13 +339,12 @@ function linksConfigMenu()
 		echo "<input type=submit value="._MD_MODIFY."></form>\n";
 		echo"</td></tr></table>";
    	}
-	include "footer.php";
-	xoops_cp_footer();
+	include "admin_footer.php";
 }
 
 function modLink()
 {
-   	global $xoopsDB, $_GET, $myts, $eh, $mytree, $xoopsConfig, $xoopsModule;
+   	global $xoopsDB, $_GET, $myts, $eh, $mytree, $xoopsConfig, $xoopsModule, $moduleInfo;
    	$linkimg_array = XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH."/modules/xdirectory/images/shots/");
    	$lid = $_GET['lid'];
 	xoops_cp_header();
@@ -515,7 +516,7 @@ function modLink()
     echo "<tr><td colspan=\"6\"> <br /></td></tr>\n";
     echo "</table>\n";
     echo"</td></tr></table>";
-	include "footer.php";	
+	include "admin_footer.php";	
     xoops_cp_footer();
 }
 
@@ -533,7 +534,7 @@ function delVote()
 
 function listBrokenLinks()
 {
-   	global $xoopsDB, $eh, $xoopsModule;
+   	global $xoopsDB, $eh, $xoopsModule, $moduleInfo;
    	$result = $xoopsDB->query("select * from ".$xoopsDB->prefix("xdir_broken")." group by lid order by reportid DESC");
    	$totalbrokenlinks = $xoopsDB->getRowsNum($result);
 	xoops_cp_header();
@@ -603,8 +604,7 @@ function listBrokenLinks()
     }
 
 	echo"</td></tr></table>";
-	include "footer.php";	
-	xoops_cp_footer();
+	include "admin_footer.php";	
 }
 
 function delBrokenLinks()
@@ -631,7 +631,7 @@ function ignoreBrokenLinks()
 
 function listModReq()
 {
-	global $xoopsDB, $myts, $eh, $mytree, $xoopsModuleConfig, $xoopsModule;
+	global $xoopsDB, $myts, $eh, $mytree, $xoopsModuleConfig, $xoopsModule, $moduleInfo;
     $result = $xoopsDB->query("select * from ".$xoopsDB->prefix("xdir_mod")." order by requestid");
     $totalmodrequests = $xoopsDB->getRowsNum($result);
 	xoops_cp_header();
@@ -760,8 +760,7 @@ function listModReq()
 		echo _MD_NOMODREQ;
 	}
 	echo"</td></tr></table>";
-	include "footer.php";	
-	xoops_cp_footer();
+	include "admin_footer.php";	
 }
 
 function changeModReq()
@@ -868,7 +867,7 @@ function delLink()
 function modCat()
 {
 	global $xoopsDB, $_POST, $myts, $eh, $mytree, $xoopsModule;
-    $cid = $_POST["cid"];
+    $cid = $_POST["cid"];	
 	xoops_cp_header();
 	echo "<h4>"._MD_WEBLINKSCONF."</h4>";
 	echo"<table width='100%' border='0' cellspacing='1' class='outer'>"
@@ -889,8 +888,7 @@ function modCat()
 	echo " <input type=\"button\" value=\""._MD_CANCEL."\" onclick=\"javascript:history.go(-1)\ /\">";
 	echo "</form>";
 	echo"</td></tr></table>";
-	include "footer.php";	
-	xoops_cp_footer();
+	include "admin_footer.php";	
 }
 
 function modCatS()
@@ -960,8 +958,7 @@ function delCat()
     } else {
 		xoops_cp_header();
 		xoops_confirm(array('op' => 'delCat', 'cid' => $cid, 'ok' => 1), 'main.php', _MD_WARNING);
-	    include "footer.php";		
-		xoops_cp_footer();
+	    include "admin_footer.php";		
     }
 }
 

@@ -148,4 +148,18 @@ function getTotalItems($sel_id, $status=""){
         }
         return $count;
 }
-?>
+//**********************************************************************************************************************
+// ModuleName_checkModuleAdmin
+//**********************************************************************************************************************
+// return true if moduladmin framworks exists.
+//**********************************************************************************************************************
+function checkModuleAdmin()
+{
+    if ( file_exists($GLOBALS['xoops']->path('/Frameworks/moduleclasses/moduleadmin/moduleadmin.php'))){
+        include_once $GLOBALS['xoops']->path('/Frameworks/moduleclasses/moduleadmin/moduleadmin.php');
+        return true;
+    }else{
+        echo xoops_error("Error: You don't use the Frameworks \"ModuleAdmin class\". Please install this class in Frameworks ");
+        return false;
+    }
+}

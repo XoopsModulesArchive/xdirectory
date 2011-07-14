@@ -12,7 +12,7 @@ CREATE TABLE `xdir_broken` (
   KEY `lid` (`lid`),
   KEY `sender` (`sender`),
   KEY `ip` (`ip`)
-) TYPE=MyISAM AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM AUTO_INCREMENT=3 ;
 
 # --------------------------------------------------------
 
@@ -27,7 +27,7 @@ CREATE TABLE `xdir_cat` (
   `imgurl` varchar(150) NOT NULL default '',
   PRIMARY KEY  (`cid`),
   KEY `pid` (`pid`)
-) TYPE=MyISAM AUTO_INCREMENT=154 ;
+) ENGINE=MyISAM AUTO_INCREMENT=154 ;
 
 # --------------------------------------------------------
 
@@ -62,7 +62,7 @@ CREATE TABLE `xdir_links` (
   KEY `cid` (`cid`),
   KEY `status` (`status`),
   KEY `title` (`title`(40))
-) TYPE=MyISAM AUTO_INCREMENT=1336 ;
+) ENGINE=MyISAM AUTO_INCREMENT=1336 ;
 
 # --------------------------------------------------------
 
@@ -90,7 +90,7 @@ CREATE TABLE `xdir_mod` (
   `description` text NOT NULL,
   `modifysubmitter` int(11) unsigned NOT NULL default '0',
   PRIMARY KEY  (`requestid`)
-) TYPE=MyISAM AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM AUTO_INCREMENT=1 ;
 
 
 # --------------------------------------------------------
@@ -103,7 +103,7 @@ CREATE TABLE `xdir_text` (
   `lid` int(11) unsigned NOT NULL default '0',
   `description` text NOT NULL,
   KEY `lid` (`lid`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 # --------------------------------------------------------
 
@@ -121,5 +121,5 @@ CREATE TABLE `xdir_votedata` (
   PRIMARY KEY  (`ratingid`),
   KEY `ratinguser` (`ratinguser`),
   KEY `ratinghostname` (`ratinghostname`)
-) TYPE=MyISAM AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM AUTO_INCREMENT=1 ;
     
