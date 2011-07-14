@@ -1,73 +1,63 @@
-<?php
+<?
 // 
 // ------------------------------------------------------------------------- //
-//               E-Xoops: content Management for the Masses                  //
+//               E-Xoops: Content Management for the Masses                  //
 //                       < http://www.e-xoops.com >                          //
 // ------------------------------------------------------------------------- //
 // Original Author: Pascal Le Boustouller
 // Author Website : pascal.e-xoops@perso-search.com
 // Licence Type   : GPL
 // ------------------------------------------------------------------------- //
-//lid prob added line below
-$submit = intval($_GET['submit']);
 
 if ($submit) {
-
-//lid Prob 
-$id = intval($_GET['id']);
-$te = $_GET['tele'];
-$na = $_GET['namep'];
-$me = $_GET['messtext'];
-$po = $_GET['post'];
-//lid prob
-
 include("header.php");
 global $xoopsConfig, $xoopsDB, $myts, $meta;
 
  $result = $xoopsDB->query("SELECT title, email FROM ".$xoopsDB->prefix("xdir_links")." WHERE lid = '$id'");
 while(list($title, $email) = $xoopsDB->fetchRow($result)) {
 
-if ($te) {
-$teles = "Phone: $te";
+
+if ($tele) {
+$teles = "Phone: $tele";
 }  else {
 $teles = "";
 }
 
-
-$message = "Message from $na\ne-Mail: $po ".$meta['title']."\n$teles\n\n";
-$message = "$na wrote:\n";
-$message = "$me\n\n\n";
-$message = "This message was sent by $na using the e-Mail form on {X_SITENAME} Business Directory.  \n\n\n";
+$message .= "Message from $namep\ne-Mail: $post ".$meta['title']."\n$teles\n\n";
+$message .= "$namep wrote:\n";
+$message .= "$messtext\n\n\n";
+$message .= "This message was sent by $namep using the e-Mail form on {X_SITENAME}.  \n\n\n";
 
 	$subject = "Email Submission from {X_SITENAME}";
-	$mail =& xoops_getMailer();
+	$mail =& getMailer();
 	$mail->useMail();
-	$mail->setFromEmail($po);
+	$mail->setFromEmail($post);
 	$mail->setToEmails($email);
 	$mail->setSubject($subject);
 	$mail->setBody($message);
 	$mail->send();
 	echo $mail->getErrors();
+
+	$from = "From: info@changeme.com"; 
+	$to = $email; 
+	$subject = $subject; 
+	$body = $message; 
+
+if(mail($to,$subject,$body,$from)) echo ""; 
+else echo ""; 
+
+
 }
-redirect_header("index.php",3,_CLA_MESSEND);
+redirect_header("index.php",1,_CLA_MESSEND);
 exit();
 
 } else {
 
-
-//lid prob
-$lid = intval($_GET['lid']);
-$id = $lid;
-// lid prob
 include("header.php");
-
-	global $xoopsConfig, $xoopsDB, $xoopsUser;
-
 include(XOOPS_ROOT_PATH."/header.php");
+OpenTable();
 
-echo "<table width='100%' border='0' cellspacing='1' cellpadding='8' style='border: 2px solid #102bc9;'><tr class='bg4'><td valign='top'>\n";
-
- $result = $xoopsDB->query("SELECT title, email FROM ".$xoopsDB->prefix("xdir_links")." WHERE lid = '$id'");
+ $result = $xoopsDB->query("SELECT title, email FROM ".$xoopsDB->prefix("xdir_links")." WHERE lid = '$lid'");
 while(list($title, $email) = $xoopsDB->fetchRow($result)) {
 
 echo "<script>
@@ -76,23 +66,23 @@ echo "<script>
                 var errors = \"FALSE\";
 
 			
-				if (document.cont.namep.value == \"\") {
-                        errors = \"true\";
+				if (document.Cont.namep.value == \"\") {
+                        errors = \"TRUE\";
                         msg += \"The Name field is a required field.\\n\";
                 }
 				
-				if (document.cont.post.value == \"\") {
-                        errors = \"true\";
+				if (document.Cont.post.value == \"\") {
+                        errors = \"TRUE\";
                         msg += \"The e-Mail field is a required field.\\n\";
                 }
 				
-				if (document.cont.messtext.value == \"\") {
-                        errors = \"true\";
+				if (document.Cont.messtext.value == \"\") {
+                        errors = \"TRUE\";
                         msg += \"The Message field is a required field.\\n\";
                 }
 				
   
-                if (errors == \"true\") {
+                if (errors == \"TRUE\") {
                         msg += \"__________________________________________________\\n\\nPlease correct the errors listed above before submitting this form.\\n\";
                         alert(msg);
                         return false;
@@ -101,41 +91,40 @@ echo "<script>
           </script>";
 
 
-echo "<b></b><br /><br />";
-echo "Send a message to:<br><font size='4'>$title</font><br />";
-echo "<form onSubmit=\"return verify();\" method=\"get\" action=\"contact.php\" name=\"cont\">";
-echo "<input type=\"hidden\" name=\"id\" value=\"$lid\">";
-echo "<input type=\"hidden\" name=\"submit\" value=\"1\">";
+echo "<B></B><BR><BR>";
+echo "Send a message to:<br><font size=4>$title</font><BR>";
+echo "<form onSubmit=\"return verify();\" method=\"post\" action=\"contact.php\" NAME=\"Cont\">";
+echo "<INPUT TYPE=\"hidden\" NAME=\"id\" VALUE=\"$lid\">";
+echo "<INPUT TYPE=\"hidden\" NAME=\"submit\" VALUE=\"1\">";
+
     if($xoopsUser) {
 	$idd =$xoopsUser->getVar("name", "E");
 	$idde =$xoopsUser->getVar("email", "E");
 	}
 
-echo "<table width='100%' border='0' cellspacing='1'>
-    <tr>
-      <td>Your Name: </td>
-      <td><input type=\"text\" name=\"namep\" size=\"42\" value=\"$idd\"></td>
-    </tr>
-    <tr>
-      <td>Your e-Mail: </td>
-      <td><input type=\"text\" name=\"post\" size=\"42\" value=\"$idde\"></font></td>
-    </tr>
-    <tr>
-      <td>Your Phone: </td>
-      <td><input type=\"text\" name=\"tele\" size=\"42\"></font></td>
-    </tr>
-    <tr>
-      <td>Message: </td>
-      <td><textarea rows=\"5\" name=\"messtext\" cols=\"40\"></textarea></td>
-    </tr>
-</table>
-      <p><input type=\"submit\" value=\"Send\">
+echo "<TABLE WIDTH=100% BORDER=0 CELLSPACING=1>
+    <TR>
+      <TD>Your Name: </TD>
+      <TD><input type=\"text\" name=\"namep\" size=\"42\" value=\"$idd\"></TD>
+    </TR>
+    <TR>
+      <TD>Your e-Mail: </TD>
+      <TD><input type=\"text\" name=\"post\" size=\"42\" value=\"$idde\"></font></TD>
+    </TR>
+    <TR>
+      <TD>Your Phone: </TD>
+      <TD><input type=\"text\" name=\"tele\" size=\"42\"></font></TD>
+    </TR>
+    <TR>
+      <TD>Message: </TD>
+      <TD><textarea rows=\"5\" name=\"messtext\" cols=\"40\"></textarea></TD>
+    </TR>
+</TABLE>
+      <p><INPUT TYPE=\"submit\" VALUE=\"Send\">
 </form>";
 
-echo "</td></tr></table>";
-
-}
+CloseTable();
 include(XOOPS_ROOT_PATH."/footer.php");
-
+}
 }
 ?>
