@@ -1,5 +1,5 @@
 <?php
-// $Id: xdir_top.php,v 1.8 2003/03/28 04:04:51 w4z004 Exp $
+// $Id$
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //

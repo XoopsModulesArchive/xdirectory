@@ -1,5 +1,5 @@
 <?php
-// $Id: brokenlink.php,v 1.8 2003/03/27 12:11:06 w4z004 Exp $
+// $Id$
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //
