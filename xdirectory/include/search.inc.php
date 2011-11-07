@@ -1,5 +1,5 @@
 <?php
-// $Id: search.inc.php,v 1.6 2003/03/25 11:08:22 buennagel Exp $
+// $Id$
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //

@@ -1,5 +1,5 @@
 <?php
-// $Id: xoops_version.php,v 1.16 2003/03/30 01:51:59 mvandam Exp $
+// $Id$
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //
