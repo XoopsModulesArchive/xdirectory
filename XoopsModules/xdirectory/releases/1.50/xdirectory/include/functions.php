@@ -1,5 +1,5 @@
 <?php
-// $Id: functions.php,v 1.8 2003/02/20 12:56:52 okazu Exp $
+// $Id$
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //

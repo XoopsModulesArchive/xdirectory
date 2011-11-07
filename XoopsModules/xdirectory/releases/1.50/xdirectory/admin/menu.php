@@ -1,5 +1,5 @@
 <?php
-// $Id: menu.php,v 1.7 2003/04/17 12:45:28 okazu Exp $
+// $Id$
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //

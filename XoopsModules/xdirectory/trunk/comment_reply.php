@@ -1,5 +1,5 @@
 <?php
-// $Id: comment_reply.php,v 1.5 2003/02/12 11:36:35 okazu Exp $
+// $Id$
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //

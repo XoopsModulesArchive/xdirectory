@@ -1,5 +1,5 @@
 <?php
-// $Id: topten.php,v 1.7 2003/03/25 11:08:22 buennagel Exp $
+// $Id$
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //

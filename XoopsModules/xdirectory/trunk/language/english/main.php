@@ -1,5 +1,5 @@
 <?php
-// $Id: main.php,v 1.7 2003/03/27 12:11:08 w4z004 Exp $
+// $Id$
 //%%%%%%		Module Name 'xDirectory'		%%%%%
 
 define("_MD_THANKSFORINFO","Thanks for the information. We'll look into your request shortly.");

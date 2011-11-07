@@ -1,5 +1,5 @@
 <?php
-// $Id: admin_header.php,v 1.8 2004/12/26 19:11:54 onokazu Exp $
+// $Id$
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //

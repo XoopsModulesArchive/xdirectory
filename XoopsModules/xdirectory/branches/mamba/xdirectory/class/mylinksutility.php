@@ -8,7 +8,7 @@
  * @package::    mylinks
  * @subpackage:: class
  * @author::     zyspec (owners@zyspec.com)
- * @version::    $Id:$
+ * @version::    $Id$
  * @since::     File available since Release 3.11
  */
 
@@ -20,7 +20,7 @@ defined('XOOPS_ROOT_PATH') or die('Restricted access') ;
  * @package::   mylinks
  * @author::    zyspec (owners@zyspec.com), Herve Thouzard
  * @copyright:: Copyright (c) 2010 ZySpec Incorporated, Herve Thouzard
- * @version::   $Id:$
+ * @version::   $Id$
  * @access::    public
  */
 class MylinksUtility

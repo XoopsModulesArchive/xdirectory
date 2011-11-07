@@ -1,5 +1,5 @@
 <?php
-// $Id: blocks.php,v 1.6 2003/02/15 23:08:34 w4z004 Exp $
+// $Id$
 // Blocks
 define("_MB_XDIR_DISP","Display");
 define("_MB_XDIR_LINKS","Listings");
