@@ -63,7 +63,7 @@ define("_MD_BUSFAX","Fax: ");
 define("_MD_BUSEMAIL","Email: ");
 define("_MD_SITEURL","Website: ");
 define("_MD_OPTIONS","Opties: ");
-define("_MD_NOTIFYAPPROVE", "Stuur mij een bericht als deze gegevens zijn goedgekeurd");
+define("_MD_NOTIFYAPPROVE","Stuur mij een bericht als deze gegevens zijn goedgekeurd");
 define("_MD_SHOTIMAGE","Screenshot: ");
 define("_MD_SENDREQUEST","Verstuur gegevens");
 
@@ -116,7 +116,7 @@ define("_MD_VOTEONCE2","Stem maar 1 keer op dezelfde gegevens.<br />Alle stemmen
 
 define("_MD_WEBLINKSCONF","xDirectory Vermeldingen Configuratie");
 define("_MD_GENERALSET","xDirectory Algemene Opties");
-define("_MD_ADDMODDELETE","Toevoegen, Bewerken, en verwijderen van Categorieën/Adressen");
+define("_MD_ADDMODDELETE","Toevoegen, Bewerken, en verwijderen van CategorieÃ«n/Adressen");
 define("_MD_LINKSWAITING","Wachtende adressen voor goedkeuring");
 define("_MD_BROKENREPORTS","Foutive links");
 define("_MD_MODREQUESTS","Aanvragen voor bewerken van gegevens");
@@ -160,7 +160,7 @@ define("_MD_OWNER","Eigenaar: ");
 define("_MD_NOMODREQ","Geen berkingsaanvragen.");
 define("_MD_DBUPDATED","Database is succesvol ge-update.");
 define("_MD_MODREQDELETED","Bewerkingsaanvraag verijderd.");
-define("_MD_IMGURLMAIN","Image URL (OPTIONEEL en alleen geldig voor hoofdcategorieëen. Hoogte van plaatje zal worden gezet op 50): ");
+define("_MD_IMGURLMAIN","Image URL (OPTIONEEL en alleen geldig voor hoofdcategorieÃ«en. Hoogte van plaatje zal worden gezet op 50): ");
 define("_MD_PARENT","Vorige categorie:");
 define("_MD_SAVE","Veranderingen opslaan");
 define("_MD_CATDELETED","Categorie verwijderen.");
