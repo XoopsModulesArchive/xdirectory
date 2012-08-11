@@ -64,7 +64,7 @@ define("_MD_BUSEMAIL","e-Mail: ");
 define("_MD_SITEURL","Website: ");
 define("_MD_OPTIONS","Options: ");
 define("_MD_PREMIUM","Premium Listing: ");
-define("_MD_NOTIFYAPPROVE", "Notify me when this Listing is approved");
+define("_MD_NOTIFYAPPROVE","Notify me when this Listing is approved");
 define("_MD_SHOTIMAGE","Screenshot Img: ");
 define("_MD_SENDREQUEST","Send Request");
 
