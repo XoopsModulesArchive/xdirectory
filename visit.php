@@ -30,7 +30,7 @@
 //	the mylinks module as the foundation.									 //
 // ------------------------------------------------------------------------- //
 include '../../mainfile.php';
-$myts =& MyTextSanitizer::getInstance(); // MyTextSanitizer object
+$myts = MyTextSanitizer::getInstance(); // MyTextSanitizer object
 $lid = intval($_GET['lid']);
 $cid = intval($_GET['cid']);
 $sql = sprintf("UPDATE %s SET hits = hits+1 WHERE lid = %u AND status > 0", $xoopsDB->prefix("xdir_links"), $lid);

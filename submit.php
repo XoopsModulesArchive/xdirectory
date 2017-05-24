@@ -25,7 +25,7 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 include "header.php";
-$myts =& MyTextSanitizer::getInstance();// MyTextSanitizer object
+$myts = MyTextSanitizer::getInstance();// MyTextSanitizer object
 include_once XOOPS_ROOT_PATH."/class/xoopstree.php";
 include_once XOOPS_ROOT_PATH."/class/module.errorhandler.php";
 include_once XOOPS_ROOT_PATH."/include/xoopscodes.php";

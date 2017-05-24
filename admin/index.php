@@ -39,7 +39,7 @@ include_once XOOPS_ROOT_PATH.'/class/xoopstree.php';
 include_once XOOPS_ROOT_PATH."/class/xoopslists.php";
 include_once XOOPS_ROOT_PATH."/include/xoopscodes.php";
 include_once XOOPS_ROOT_PATH.'/class/module.errorhandler.php';
-$myts =& MyTextSanitizer::getInstance();
+$myts = MyTextSanitizer::getInstance();
 $eh = new ErrorHandler;
 $mytree = new XoopsTree($xoopsDB->prefix("xdir_cat"),"cid","pid");
 

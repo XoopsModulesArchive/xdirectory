@@ -30,7 +30,7 @@
 //	the mylinks module as the foundation.									 //
 // ------------------------------------------------------------------------- //
 include "header.php";
-$myts =& MyTextSanitizer::getInstance(); // MyTextSanitizer object
+$myts = MyTextSanitizer::getInstance(); // MyTextSanitizer object
 include_once XOOPS_ROOT_PATH."/class/xoopstree.php";
 $mytree = new XoopsTree($xoopsDB->prefix("xdir_cat"),"cid","pid");
 $xoopsOption['template_main'] = 'xdir_topten.html';
